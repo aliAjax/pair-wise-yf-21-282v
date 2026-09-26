@@ -18,7 +18,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -165,12 +166,18 @@ label span {
   font-size: 13px;
 }
 
-input {
+input,
+select {
   width: 100%;
   min-height: 42px;
   border-radius: 7px;
   border: 1px solid var(--border);
   padding: 0 12px;
+  background: #ffffff;
+}
+
+select {
+  cursor: pointer;
 }
 
 .records {
@@ -208,10 +215,318 @@ input {
   line-height: 1.6;
 }
 
+/* 筛选与录入 */
+.chips .chip-on {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.hint {
+  margin: 12px 0 0;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.inline-fields {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  gap: 8px;
+}
+
+/* 状态徽标 */
+.badge {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.badge.active {
+  background: color-mix(in srgb, var(--accent) 14%, #ffffff);
+  color: var(--accent);
+}
+
+.badge.wait {
+  background: color-mix(in srgb, var(--secondary) 16%, #ffffff);
+  color: var(--secondary);
+}
+
+.badge.done {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+/* 工作台摘要：排期 / 等待区 / 色卡 */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.board-col {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  background: #fbfdff;
+}
+
+.board-col h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+.restorer {
+  border-top: 1px dashed var(--border);
+  padding: 10px 0;
+}
+
+.restorer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.restorer-head small {
+  display: block;
+  color: #64748b;
+}
+
+.capacity {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.capacity button {
+  min-height: 28px;
+  width: 28px;
+  padding: 0;
+  border-radius: 6px;
+}
+
+.capacity em {
+  font-style: normal;
+  font-weight: 700;
+  min-width: 52px;
+  text-align: center;
+}
+
+.restorer ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.restorer li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  color: #334155;
+}
+
+.restorer li small {
+  color: #0f766e;
+}
+
+.waiting {
+  border: 1px solid color-mix(in srgb, var(--secondary) 35%, var(--border));
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: color-mix(in srgb, var(--secondary) 6%, #ffffff);
+}
+
+.waiting p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #526071;
+}
+
+.warn {
+  color: #b45309 !important;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.color-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px dashed var(--border);
+}
+
+.color-card i,
+.need i {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.color-card div {
+  flex: 1;
+}
+
+.color-card small {
+  display: block;
+  color: #64748b;
+}
+
+.color-card button {
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+/* 档案记录 */
+.records article {
+  cursor: pointer;
+}
+
+.records article.record-on {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+.records h3 .badge {
+  font-weight: 600;
+}
+
+.progress {
+  height: 8px;
+  margin: 8px 0;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.progress i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+  transition: width 0.3s ease;
+}
+
+.note {
+  font-size: 13px;
+}
+
+/* 地毯详情 */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.detail-grid h3 {
+  margin: 18px 0 10px;
+  font-size: 15px;
+}
+
+.detail-grid h3:first-child {
+  margin-top: 0;
+}
+
+.fields {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.fields div {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #fbfdff;
+}
+
+.fields dt {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.fields dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+.stages {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stages li {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.stages li.stage-done {
+  background: color-mix(in srgb, var(--accent) 12%, #ffffff);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  color: var(--accent);
+}
+
+.stages li.stage-now {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.need {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: #fbfdff;
+}
+
+.need div {
+  flex: 1;
+}
+
+.need small {
+  display: block;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.need .badge {
+  margin-left: 0;
+  flex: none;
+}
+
 @media (max-width: 860px) {
   .metrics,
   .workspace,
-  .field-grid {
+  .field-grid,
+  .board,
+  .detail-grid,
+  .fields {
     grid-template-columns: 1fr;
   }
 
